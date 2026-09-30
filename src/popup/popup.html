@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Indian Visa Autofill PRO</title>
+  <link rel="stylesheet" href="popup.css" />
+  <link rel="stylesheet" href="../ui/glass.css" />
+</head>
+<body>
+  <header>
+    <img class="mark" src="../../icons/icon48.png" alt="" />
+    <div class="ttl">
+      <strong id="modeTitle">Indian Visa Autofill <span>PRO</span></strong>
+      <small id="pageState">Checking...</small>
+    </div>
+  </header>
+  <main>
+    <section id="visaMode" hidden>
+      <div class="auto-card" id="visaCard">
+        <div class="auto-info">
+          <div class="auto-title">📝 Fill as I go</div>
+          <div class="auto-sub" id="visaSub">Off</div>
+        </div>
+        <label class="toggle" title="Fill each nic.in page as you open it">
+          <input type="checkbox" id="visaToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <button id="fill" class="big fill-tile">⚡ Fill this page</button>
+    </section>
+    <section id="noMode" hidden>
+      <p class="nomode">Open the visa form to get started.</p>
+      <div class="grid">
+        <button id="open-visa" class="tile">📝 <span>Visa form</span></button>
+      </div>
+    </section>
+    <div class="row">
+      <select id="profile"></select>
+      <button id="edit" class="ico" title="Edit Profile">✏️</button>
+    </div>
+    <div class="webfile-row" id="webfileRow">
+      <div class="wf-inner">
+        <span id="webFileName" class="wf-name">No files yet</span>
+        <button class="wf-btn" id="openDocs">Documents</button>
+      </div>
+    </div>
+    <div class="quick" data-build="visa">
+      <button class="qbtn" data-open="letters"><span class="qi">✎</span>Letters</button>
+      <button class="qbtn" data-open="portals"><span class="qi">◈</span>Portals</button>
+      <button class="qbtn" data-open="import"><span class="qi">⬆</span>Import</button>
+    </div>
+    <div id="result" class="result"></div>
+  </main>
+  <footer>
+    <span class="dot" id="statusDot"></span>
+    <span id="footerText">Local only — nothing leaves this computer</span>
+    <span class="spacer"></span>
+    <button id="settings" class="link">Settings</button>
+    <button id="guide-btn" class="link">Guide</button>
+  </footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

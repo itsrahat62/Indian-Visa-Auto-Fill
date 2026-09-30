@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Indian Visa Autofill PRO</title>
+  <link rel="stylesheet" href="options.css" />
+  <link rel="stylesheet" href="../ui/glass.css" />
+</head>
+<body>
+<aside class="side">
+  <div class="brand">
+    <img class="mark" src="../../icons/icon48.png" alt="" aria-hidden="true" />
+    <div class="brand-t">
+      <strong id="brandName">Indian Visa</strong>
+      <span id="brandSub">Autofill Pro</span>
+    </div>
+  </div>
+  <nav id="nav">
+    <p class="navlabel">Paperwork</p>
+    <button data-tab="import"><span class="ic">⬆</span> Import</button>
+    <button data-tab="profiles"><span class="ic">◍</span> Profiles</button>
+    <button data-tab="documents"><span class="ic">▤</span> Documents</button>
+    <p class="navlabel">Produce</p>
+    <button data-tab="letters" data-build="visa"><span class="ic">✎</span> Letters</button>
+    <button data-tab="presets"><span class="ic">★</span> Presets</button>
+    <p class="navlabel" data-build="visa">After the visa</p>
+    <button data-tab="portals" data-build="visa"><span class="ic">◈</span> Portals</button>
+    <p class="navlabel">Setup</p>
+    <button data-tab="mappings"><span class="ic">⇄</span> Mappings</button>
+    <button data-tab="settings"><span class="ic">⚙</span> Settings</button>
+    <button data-tab="backup"><span class="ic">⤓</span> Backup</button>
+    <button data-tab="help"><span class="ic">?</span> Help</button>
+  </nav>
+  <div class="privacy">
+    <span class="dot"></span>
+    <div>
+      <strong>Runs offline</strong>
+      Nothing you type here leaves this computer.
+    </div>
+  </div>
+</aside>
+<main>
+  <section id="tab-import" class="tab">
+    <h1>Import Passport or Previous Application</h1>
+    <p class="lede">
+      Upload a passport image/PDF, or previous visa application PDF.
+      Digital PDFs are parsed instantly; scanned images run fast local OCR —
+      files are never uploaded anywhere.
+    </p>
+    <div id="drop" class="drop">
+      <input type="file" id="file" accept="application/pdf,image/*" hidden />
+      <div class="drop-in">
+        <div class="drop-e">📄</div>
+        <div class="drop-t">Drag & drop file here, or <button id="pick" class="link">Browse file</button></div>
+        <div class="drop-s">PDF · JPG · PNG</div>
+      </div>
+    </div>
+    <div id="progress" class="progress" hidden>
+      <div class="bar"><i></i></div>
+      <span class="ptxt">…</span>
+    </div>
+    <div id="review" class="review" hidden>
+      <div class="review-head">
+        <h2>Extracted Information</h2>
+        <span id="reviewMeta" class="badge"></span>
+      </div>
+      <p class="hint">Checked fields will be saved to your profile.</p>
+      <div id="reviewList" class="review-list"></div>
+      <div class="review-foot">
+        <input id="newName" placeholder="Profile Name" />
+        <select id="targetProfile"></select>
+        <button id="saveImport" class="primary">Save to Profile</button>
+      </div>
+    </div>
+    <details class="manual">
+      <summary>Paste MRZ text manually (2 bottom lines of passport)</summary>
+      <textarea id="mrzText" rows="3" spellcheck="false"
+        placeholder="P&lt;BGDUDDIN&lt;&lt;MD&lt;RAHIM&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&#10;A012345678BGD9001015M3001019&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;04"></textarea>
+      <button id="mrzGo" class="ghost">Parse MRZ</button>
+    </details>
+  </section>
+  <section id="tab-profiles" class="tab">
+    <h1>Applicant Profiles</h1>
+    <div class="prof-bar">
+      <select id="profSelect"></select>
+      <button id="profNew" class="ghost">+ New</button>
+      <button id="profDup" class="ghost">⧉ Duplicate</button>
+      <button id="profDel" class="ghost danger">🗑 Delete</button>
+      <span class="spacer"></span>
+      <span id="saveState" class="save-state"></span>
+    </div>
+    <div id="editor" class="editor"></div>
+  </section>
+  <section id="tab-documents" class="tab">
+    <h1>Documents</h1>
+    <div class="prof-bar">
+      <select id="docProfSelect"></select>
+      <span class="spacer"></span>
+      <span id="docCount" class="save-state"></span>
+    </div>
+    <p class="muted" id="docRules"></p>
+    <div id="docSlots" class="doc-slots"></div>
+    <input type="file" id="docFileInput" accept=".pdf,image/*" style="display:none" />
+  </section>
+  <section id="tab-letters" class="tab" data-build="visa">
+    <h1>Letters &amp; Undertaking</h1>
+    <p class="lede">
+      The covering letter and the Visa Undertaking Form, written from the
+      selected profile and saved as a PDF you can print. Both leave the
+      signature line empty — that part is yours.
+    </p>
+    <div class="box" id="inviteBox">
+      <h2>ইনভাইটেশন / AYUSH লেটার থেকে</h2>
+      <p class="hint">
+        হাসপাতালের ইনভাইটেশন লেটার (বা AYUSH ইনস্টিটিউটের লেটার) দিন — তাতে রোগী
+        আর অ্যাটেনডেন্ট যে-কজনের নাম আছে, <b>প্রত্যেকের নিজের</b> কভার লেটার ও
+        আন্ডারটেকিং আলাদা করে তৈরি হবে। কে রোগী, কে কার অ্যাটেনডেন্ট, সম্পর্কটা কী —
+        সবই চিঠি থেকে নেওয়া হয়। ফাইলটা এই কম্পিউটারের বাইরে যায় না।
+      </p>
+      <div class="row">
+        <button class="primary" id="invitePick">ইনভাইটেশন লেটার দিন</button>
+        <button class="ghost" id="inviteClear" hidden>সরান</button>
+        <span id="inviteState" class="hint"></span>
+      </div>
+      <input type="file" id="inviteFile" accept="application/pdf" hidden />
+      <div id="inviteWho" class="cards wide"></div>
+    </div>
+    <h2>অথবা সেভ করা প্রোফাইল থেকে</h2>
+    <div class="prof-bar">
+      <select id="letterProfSelect" aria-label="Profile"></select>
+      <span class="spacer"></span>
+      <span id="letterState" class="save-state"></span>
+    </div>
+    <div id="letterList" class="cards wide"></div>
+    <div class="box" id="letterCompanions">
+      <h2>Who is travelling together</h2>
+      <p class="hint">
+        Ticked profiles are named in the patient's letter as accompanying
+        attendants, and in each attendant's letter as the patient they are
+        accompanying.
+      </p>
+      <div id="companionList" class="chips"></div>
+    </div>
+  </section>
+  <section id="tab-portals" class="tab" data-build="visa">
+    <h1>Portals</h1>
+    <p class="lede">
+      The pages that come after the visa. Each opens with this profile's
+      details already filled in — captchas and payment are left to you.
+    </p>
+    <div class="prof-bar">
+      <select id="portalProfSelect" aria-label="Profile"></select>
+    </div>
+    <div id="portalList" class="cards wide"></div>
+  </section>
+  <section id="tab-presets" class="tab">
+    <h1>Presets &amp; Stays</h1>
+    <p class="lede">Save frequently used details for fast one-click access.</p>
+    <h2>🏨 Hotel / Place of Stay in India</h2>
+    <div id="stayList" class="cards"></div>
+    <button id="stayAdd" class="ghost">+ Add Hotel</button>
+    <h2>🏢 Employer / Company (NOC Letterhead)</h2>
+    <div id="compList" class="cards"></div>
+    <button id="compAdd" class="ghost">+ Add Company</button>
+  </section>
+  <section id="tab-mappings" class="tab">
+    <h1>Taught Field Mappings</h1>
+    <p class="lede">
+      If any input on the portal is unmapped, click <b>Teach</b> on that page and click the field —
+      all custom taught mappings will appear here.
+    </p>
+    <div id="mapList" class="maps"></div>
+  </section>
+  <section id="tab-settings" class="tab">
+    <h1>General Settings</h1>
+    <div class="settings" id="settingsList"></div>
+  </section>
+  <section id="tab-backup" class="tab">
+    <h1>Backup & Restore</h1>
+    <p class="lede">Export all profiles, mappings, and presets to a JSON file. Optionally protect with AES-256 encryption.</p>
+    <div class="box">
+      <h2>Export Data</h2>
+      <div class="row">
+        <input id="expPass" type="password" placeholder="Encryption Password (Optional)" autocomplete="new-password" />
+        <button id="doExport" class="primary">Download Backup File</button>
+      </div>
+      <label class="check"><input type="checkbox" id="expDocs" /> Include documents (passport scans, photos) — makes the file large, keep it private</label>
+    </div>
+    <div class="box">
+      <h2>Import Backup</h2>
+      <div class="row">
+        <input id="impFile" type="file" accept="application/json,.json" />
+        <input id="impPass" type="password" placeholder="Decryption Password (if encrypted)" autocomplete="off" />
+        <button id="doImport" class="ghost">Restore Backup</button>
+      </div>
+      <label class="check"><input type="checkbox" id="impMerge" checked /> Merge with existing profiles</label>
+      <div id="impMsg" class="msg"></div>
+    </div>
+  </section>
+  <section id="tab-help" class="tab">
+    <h1>How It Works</h1>
+    <div class="steps">
+      <div class="step"><b>1</b><div><strong>Import</strong><p>Drop a passport scan or visa PDF. Name, passport number, DOB, and expiry are extracted automatically.</p></div></div>
+      <div class="step"><b>2</b><div><strong>Fill Profile</strong><p>Check the imported details and add what the nine-page form asks for, once.</p></div></div>
+      <div class="step"><b>3</b><div><strong>Auto-Fill Portal</strong><p>Click the floating widget or press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> on indianvisa-bangladesh.nic.in.</p></div></div>
+      <div class="step"><b>4</b><div><strong>Teach Mode</strong><p>Press <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> to teach custom fields in one click.</p></div></div>
+    </div>
+    <h2>Intentionally Manual Safeguards</h2>
+    <ul class="nope">
+      <li><b>Captcha</b> — A guess is typed in for you; you check it against the picture and press Enter. Nothing is submitted on its own.</li>
+      <li><b>Declaration Questions</b> — Standard legal declarations remain under your review unless enabled in settings.</li>
+      <li><b>Final Form Review</b> — Always review entered data before final submission.</li>
+    </ul>
+    <h2>Shortcuts</h2>
+    <table class="keys">
+      <tr><td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd></td><td>Auto-fill current page</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd></td><td>Toggle Teach Mode</td></tr>
+      <tr><td><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></td><td>Switch to next profile</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Exit Teach Mode</td></tr>
+    </table>
+  </section>
+</main>
+<div id="cropWrap" class="cropwrap" hidden>
+  <div class="cropbox">
+    <header>
+      <div>
+        <strong>ছবির কতটুকু নেবে</strong>
+        <small id="cropSize">—</small>
+      </div>
+      <button class="ghost" id="cropCancel">বাতিল</button>
+    </header>
+    <div class="croprow">
+      <div class="cropstage" id="cropStage">
+        <img id="cropImg" alt="" />
+        <div class="cropsel" id="cropSel">
+          <span class="h nw"></span><span class="h ne"></span>
+          <span class="h sw"></span><span class="h se"></span>
+        </div>
+      </div>
+      <div class="cropprev">
+        <canvas id="cropPrev" width="220" height="220"></canvas>
+        <small>প্রিভিউ — এটাই আপলোড হবে</small>
+      </div>
+    </div>
+    <p class="hint">
+      চৌকোটা টেনে সরান, কোণা ধরে ছোট-বড় করুন। দুই কান আর চিবুক যেন ভেতরে
+      থাকে — কান ঢাকা থাকলে আবেদন বাতিল হয়। চৌকো সবসময় বর্গাকারই থাকবে,
+      কারণ পোর্টাল বর্গাকারই চায়।
+    </p>
+    <footer>
+      <button class="ghost" id="cropReset">পুরো ছবি</button>
+      <span class="spacer"></span>
+      <button class="primary" id="cropSave">এটাই নাও</button>
+    </footer>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<script type="module" src="options.js"></script>
+</body>
+</html>

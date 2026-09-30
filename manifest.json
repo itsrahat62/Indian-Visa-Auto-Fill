@@ -1,0 +1,122 @@
+{
+  "manifest_version": 3,
+  "name": "Indian Visa Auto Fill",
+  "short_name": "Auto Fill",
+  "version": "2.0.0",
+  "description": "Fills the nine-page Indian visa application at indianvisa-bangladesh.nic.in from your saved profile. Works offline; nothing is submitted for you and captchas are left to you.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "scripting",
+    "activeTab",
+    "contextMenus",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://indianvisa-bangladesh.nic.in/*",
+    "https://indianvisaonline.gov.in/*",
+    "https://*.indianvisaonline.gov.in/*",
+    "https://airsuvidha.civilaviation.gov.in/*",
+    "https://billpay.sonalibank.com.bd/*",
+    "https://passenger.blpa.gov.bd/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Indian Visa Autofill PRO",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "src/options/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://indianvisa-bangladesh.nic.in/*",
+        "https://indianvisaonline.gov.in/*",
+        "https://*.indianvisaonline.gov.in/*",
+        "https://airsuvidha.civilaviation.gov.in/*",
+        "https://billpay.sonalibank.com.bd/*",
+        "https://passenger.blpa.gov.bd/*"
+      ],
+      "js": [
+        "src/content/page-helper.js"
+      ],
+      "run_at": "document_end",
+      "world": "MAIN",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://indianvisa-bangladesh.nic.in/*",
+        "https://indianvisaonline.gov.in/*",
+        "https://*.indianvisaonline.gov.in/*",
+        "https://airsuvidha.civilaviation.gov.in/*",
+        "https://billpay.sonalibank.com.bd/*",
+        "https://passenger.blpa.gov.bd/*"
+      ],
+      "js": [
+        "src/content/content.js"
+      ],
+      "css": [
+        "src/content/overlay.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "commands": {
+    "fill-page": {
+      "suggested_key": {
+        "default": "Alt+Shift+F"
+      },
+      "description": "Auto-fill this page"
+    },
+    "toggle-teach": {
+      "suggested_key": {
+        "default": "Alt+Shift+T"
+      },
+      "description": "Toggle Teach Mode"
+    },
+    "next-profile": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Switch to next profile"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*",
+        "src/content/*",
+        "src/lib/*",
+        "vendor/*"
+      ],
+      "matches": [
+        "https://indianvisa-bangladesh.nic.in/*",
+        "https://indianvisaonline.gov.in/*",
+        "https://*.indianvisaonline.gov.in/*",
+        "https://airsuvidha.civilaviation.gov.in/*",
+        "https://billpay.sonalibank.com.bd/*",
+        "https://passenger.blpa.gov.bd/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

@@ -1,0 +1,5 @@
+* text=auto eol=lf
+vendor/** -diff linguist-vendored
+*.wasm binary
+*.gz binary
+*.traineddata binary

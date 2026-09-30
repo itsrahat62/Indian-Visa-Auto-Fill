@@ -1,0 +1,139 @@
+
+@font-face {
+  font-family: "Inter";
+  src: url("../../vendor/fonts/inter-latin-wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Hind Siliguri";
+  src: url("../../vendor/fonts/hind-siliguri-bengali-400.woff2") format("woff2");
+  font-weight: 400; font-display: swap; unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+25CC;
+}
+@font-face {
+  font-family: "Hind Siliguri";
+  src: url("../../vendor/fonts/hind-siliguri-bengali-500.woff2") format("woff2");
+  font-weight: 500; font-display: swap; unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+25CC;
+}
+@font-face {
+  font-family: "Hind Siliguri";
+  src: url("../../vendor/fonts/hind-siliguri-bengali-600.woff2") format("woff2");
+  font-weight: 600; font-display: swap; unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+25CC;
+}
+@font-face {
+  font-family: "Hind Siliguri";
+  src: url("../../vendor/fonts/hind-siliguri-bengali-700.woff2") format("woff2");
+  font-weight: 700 900; font-display: swap; unicode-range: U+0951-0952, U+0964-0965, U+0980-09FE, U+1CD0-1CF9, U+200C-200D, U+25CC;
+}
+@property --edge-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+:root {
+  --font: "Inter", "Hind Siliguri", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+  --brand: #9333ea;
+  --brand-2: #a855f7;
+  --brand-ink: #7e22ce;
+  --brand-wash: rgba(147, 51, 234, .10);
+  --brand-grad: linear-gradient(135deg, #b14cf0 0%, #8b2fdc 55%, #6d28d9 100%);
+  --field: #f5f2ff;
+  --glass: rgba(255, 255, 255, .58);
+  --glass-strong: rgba(255, 255, 255, .78);
+  --glass-soft: rgba(255, 255, 255, .38);
+  --glass-line: rgba(255, 255, 255, .70);
+  --glass-rule: rgba(88, 60, 140, .12);
+  --glass-blur: blur(22px) saturate(185%);
+  --glass-shadow: 0 10px 40px rgba(76, 29, 149, .12), 0 1px 3px rgba(76, 29, 149, .08);
+  --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .85);
+  --edge-colors: #a855f7, #ec4899, #f59e0b, #22d3ee, #6366f1, #a855f7;
+  --edge-width: 1.5px;
+  --ink: #120d24;
+  --ink-2: #251e3d;
+  --ink-muted: #4a4363;
+  --ink-faint: #5b5475;
+  --ok: #059669;
+  --ok-wash: rgba(5, 150, 105, .12);
+  --bad: #dc2626;
+  --bad-wash: rgba(220, 38, 38, .10);
+  --warn: #8a3a06;
+  --warn-wash: rgba(245, 158, 11, .14);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand: #b673ff;
+    --brand-2: #c89bff;
+    --brand-ink: #d8b4fe;
+    --brand-wash: rgba(182, 115, 255, .14);
+    --field: #0c0918;
+    --glass: rgba(30, 24, 52, .55);
+    --glass-strong: rgba(36, 29, 62, .78);
+    --glass-soft: rgba(30, 24, 52, .35);
+    --glass-line: rgba(255, 255, 255, .10);
+    --glass-rule: rgba(255, 255, 255, .08);
+    --glass-shadow: 0 12px 44px rgba(0, 0, 0, .45), 0 1px 2px rgba(0, 0, 0, .4);
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, .08);
+    --ink: #f3efff;
+    --ink-2: #d9d2f0;
+    --ink-muted: #a59dc4;
+    --ink-faint: #9890b8;
+    --ok: #34d399;
+    --ok-wash: rgba(52, 211, 153, .14);
+    --bad: #f87171;
+    --bad-wash: rgba(248, 113, 113, .14);
+    --warn: #fbbf24;
+    --warn-wash: rgba(251, 191, 36, .14);
+  }
+}
+html { background: var(--field); }
+body {
+  font-family: var(--font);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background:
+    radial-gradient(60vmax 50vmax at 8% -10%, rgba(168, 85, 247, .28), transparent 60%),
+    radial-gradient(50vmax 45vmax at 105% 10%, rgba(236, 72, 153, .18), transparent 60%),
+    radial-gradient(55vmax 50vmax at 80% 110%, rgba(34, 211, 238, .18), transparent 60%),
+    radial-gradient(45vmax 40vmax at -5% 100%, rgba(99, 102, 241, .20), transparent 60%),
+    var(--field);
+  background-attachment: fixed;
+}
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-line);
+  box-shadow: var(--glass-shadow), var(--glass-hi);
+}
+.edge { position: relative; isolation: isolate; }
+.edge::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--edge-width));
+  border-radius: inherit;
+  padding: var(--edge-width);
+  background: conic-gradient(from var(--edge-angle), var(--edge-colors));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+  animation: edge-turn 8s linear infinite;
+  opacity: .9;
+}
+.edge.edge-soft::after { opacity: .5; }
+@keyframes edge-turn { to { --edge-angle: 360deg; } }
+.btn-brand {
+  background: var(--brand-grad);
+  color: #fff;
+  border: 0;
+  box-shadow: 0 6px 20px rgba(139, 47, 220, .35), inset 0 1px 0 rgba(255, 255, 255, .25);
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.btn-brand:hover { filter: brightness(1.06); box-shadow: 0 8px 26px rgba(139, 47, 220, .45), inset 0 1px 0 rgba(255, 255, 255, .3); }
+.btn-brand:active { transform: translateY(1px) scale(.99); }
+@media (prefers-reduced-motion: reduce) {
+  .edge::after { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}

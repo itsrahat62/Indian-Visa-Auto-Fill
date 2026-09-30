@@ -1,0 +1,49 @@
+
+@keyframes iv-pop {
+  0%   { box-shadow: 0 0 0 0 rgba(18, 185, 129, .55); }
+  100% { box-shadow: 0 0 0 8px rgba(18, 185, 129, 0); }
+}
+@keyframes iv-pop-bad {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, .55); }
+  100% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+}
+.iv-filled {
+  background-color: #eafaf1 !important;
+  border-color: #12b981 !important;
+  animation: iv-pop .9s ease-out 1;
+}
+.iv-missed {
+  background-color: #fff4f4 !important;
+  border-color: #ef4444 !important;
+  animation: iv-pop-bad .9s ease-out 1;
+}
+.iv-filled.select2-container .select2-selection,
+.iv-filled .select2-selection {
+  background-color: #eafaf1 !important;
+  border-color: #12b981 !important;
+}
+html.iv-teaching,
+html.iv-teaching * {
+  cursor: crosshair !important;
+}
+html.iv-teaching input,
+html.iv-teaching select,
+html.iv-teaching textarea {
+  outline: 1px dashed rgba(47, 124, 246, .5);
+  outline-offset: 1px;
+}
+.iv-teach-hover {
+  outline: 2px solid #2f7cf6 !important;
+  outline-offset: 2px !important;
+  background-color: #eef5ff !important;
+}
+.iv-captcha-focus {
+  outline: 3px solid #ff7a18 !important;
+  outline-offset: 2px !important;
+}
+.iv-captcha-zoom {
+  transform: scale(1.5);
+  transform-origin: left center;
+  image-rendering: crisp-edges;
+  transition: transform .15s ease;
+}
